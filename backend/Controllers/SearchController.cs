@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using backend.Models;
 using backend.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +16,8 @@ namespace backend.Controllers
     public class SearchController : ControllerBase
     {
         private readonly SearchService _searchService;
+
+        private static readonly ActivitySource ActivitySource = new("DocumentSearchActivity");
 
         public SearchController(SearchService searchService)
         {
@@ -30,17 +34,27 @@ namespace backend.Controllers
         [HttpPost]
         public async Task<IActionResult> Search([FromForm] IFormFile file, [FromForm] string algorithm, [FromForm] string pattern)
         {
+            using var activity = ActivitySource.StartActivity("Search Request");
+
             if(file == null || file.Length == 0) return BadRequest("Arquivo inválido");
 
             string text;
+            using (ActivitySource.StartActivity("Read File"))
             using(var reader = new StreamReader(file.OpenReadStream()))
             {
                 text = await reader.ReadToEndAsync();
             }
 
-            var result = _searchService.ExecuteSearch(text, pattern, algorithm);
+            SearchResult result;
+            using (ActivitySource.StartActivity("Execute Algorithm"))
+            {
+                result = _searchService.ExecuteSearch(text, pattern, algorithm);    
+            }
 
-            return Ok(result);
+            using (ActivitySource.StartActivity("Format Response"))
+            {
+                return Ok(result);    
+            }
         }
     }
 }
