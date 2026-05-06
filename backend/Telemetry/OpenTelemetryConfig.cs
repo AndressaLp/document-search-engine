@@ -20,7 +20,10 @@ namespace backend.Telemetry
                     .SetResourceBuilder(resource)
                     .AddAspNetCoreInstrumentation()
                     .AddHttpClientInstrumentation()
-                    .AddOtlpExporter();
+                    .AddOtlpExporter(options =>
+                    {
+                        options.Endpoint = new Uri("http://localhost:4317");
+                    });
             })
             .WithMetrics(metrics =>
             {
