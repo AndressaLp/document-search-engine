@@ -1,4 +1,5 @@
 import FileUpload from "./components/FileUpload"
+import ResultTable from "./components/ResultTable"
 import SearchForm from "./components/SearchForm"
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
       <h1 className="text-3xl font-bold text-white mb-5">Motor de Busca em Documentos</h1>
       <FileUpload/>
       <SearchForm/>
+      <ResultTable/>
     </div>
   )
 }
