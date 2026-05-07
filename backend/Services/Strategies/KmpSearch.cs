@@ -57,7 +57,7 @@ namespace backend.Services.Strategies
             return new SearchResult
             {
                 Positions = positions,
-                ExecutionTimeMs = stopwatch.ElapsedMilliseconds,
+                ExecutionTimeMs = stopwatch.Elapsed.TotalMilliseconds,
                 TextLength = n,
                 PatternLength = m
             };

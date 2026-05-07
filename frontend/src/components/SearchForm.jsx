@@ -14,10 +14,10 @@ function SearchForm({ onSearch }){
             <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                 <label className="font-bold">Selecione o algoritmo</label>
                 <select className="cursor-pointer rounded-md p-1 outline-none bg-gray-300 hover:bg-gray-400" onChange={(e) => setAlgorithm(e.target.value)}>
-                    <option value="Naive">Naive</option>
-                    <option value="KMP">KMP</option>
-                    <option value="RabinKarp">Rabin-Karp</option>
-                    <option value="BoyerMoore">Boyer-Moore</option>
+                    <option value="naive">Naive</option>
+                    <option value="kmp">KMP</option>
+                    <option value="rabin-karp">Rabin-Karp</option>
+                    <option value="boyer-moore">Boyer-Moore</option>
                 </select>
                 <label className="font-bold">Digite o texto</label>
                 <input className="rounded-md p-1 outline-none bg-gray-300" type="text" placeholder="Texto a buscar" value={pattern} onChange={(e) => setPattern(e.target.value)}/>

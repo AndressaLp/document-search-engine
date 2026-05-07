@@ -10,7 +10,7 @@ namespace backend.Models
         public List<int> Positions { get; set; } = new();
         public int Occurrences => Positions.Count;
         public bool Found => Positions.Count > 0;
-        public long ExecutionTimeMs { get; set; }
+        public double ExecutionTimeMs { get; set; }
         public int TextLength { get; set; }
         public int PatternLength { get; set; }
     }

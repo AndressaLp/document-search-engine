@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using backend.Services.Strategies;
 
 namespace tests
 {
@@ -17,14 +18,14 @@ namespace tests
         [InlineData("biblia.txt", "Deus")]
         [InlineData("os-lusiadas.txt", "Portugal")]
         [InlineData("a-catedral-e-o-bazar.txt", "software")]
-        [InlineData("dom-casmurro.txt", "conceição")]
+        [InlineData("dom-casmurro.txt", "Capitu")]
         public void All_Algorithms_Should_Find_Text_In_Real_Documents(
             string fileName,
             string pattern)
         {
             string fullPath = Path.Combine(_documentsPath, fileName);
 
-            string text = File.ReadAllText(fullPath);
+            string text = File.ReadAllText(fullPath, System.Text.Encoding.GetEncoding("iso-8859-1"));
 
             var algorithms = new List<ISearchStrategy>
             {

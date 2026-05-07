@@ -2,6 +2,7 @@ import { useState } from "react"
 import FileUpload from "./components/FileUpload"
 import ResultTable from "./components/ResultTable"
 import SearchForm from "./components/SearchForm"
+import { api } from "./services/api"
 
 function App() {
   const [file, setFile] = useState(null);
@@ -13,7 +14,7 @@ function App() {
     formData.append("pattern", pattern);
     formData.append("algorithm", algorithm);
 
-    const response = await api.post("/search", formData);
+    const response = await api.post("/search/upload", formData);
     setResult(response.data);
   }
 

@@ -8,8 +8,8 @@ function ResultTable({ result }){
             <p>Tempo: {result.executionTimeMs} ms</p>
             <p>Ocorrências: {result.occurrences}</p>
             <p>Posições: {result.positions.join(", ")}</p>
-            <p>N (texto): {result.textSize}</p>
-            <p>M (padrão): {result.patternSize}</p>
+            <p>N (texto): {result.textLength}</p>
+            <p>M (padrão): {result.patternLength}</p>
         </div>
     )
 }

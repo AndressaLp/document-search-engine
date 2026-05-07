@@ -31,7 +31,7 @@ namespace backend.Controllers
             return Ok(algorithms);
         }
 
-        [HttpPost]
+        [HttpPost("upload")]
         public async Task<IActionResult> Search([FromForm] IFormFile file, [FromForm] string algorithm, [FromForm] string pattern)
         {
             using var activity = ActivitySource.StartActivity("Search Request");
